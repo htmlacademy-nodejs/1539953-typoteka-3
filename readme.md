@@ -1,7 +1,7 @@
 # Личный проект «Типотека» [![Build status][travis-image]][travis-url]
 
 * Студент: [Кирилл Кесарев](https://up.htmlacademy.ru/nodejs/3/user/1539953).
-* Наставник: `Вадим Осюков`.
+* Наставник: [Вадим Осюков](https://htmlacademy.ru/profile/id1411353).
 
 ---
 
