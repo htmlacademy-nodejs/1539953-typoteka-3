@@ -10,19 +10,25 @@ const getTitle = () => {
   return titles[getRandomInt(0, titles.length - 1)];
 };
 
-// Returns random count of announce sentences for publication
-const getAnnounce = () => {
-  const sentencesCount = getRandomInt(Config.MIN_ANNOUNCE_LENGTH, Config.MAX_ANNOUNCE_LENGTH);
-  const shuffledSentences = shuffle(textSentences);
+// Returns random count of shuffled text sentences from specified source
+const getRandomTextSentences = (textSource, minCount, maxCount) => {
+  const sentencesCount = getRandomInt(minCount, maxCount);
+  const shuffledSentences = shuffle(textSource);
 
   return shuffledSentences.slice(0, sentencesCount).join(` `);
 };
 
+// Returns random count of announce sentences for publication
+const getAnnounce = () => {
+  return getRandomTextSentences(textSentences, Config.MIN_ANNOUNCE_LENGTH, Config.MAX_ANNOUNCE_LENGTH);
+};
+
 // Returns random count of text sentences for publication
 const getText = () => {
-  const sentencesCount = getRandomInt(1, textSentences.length - 1);
+  const MIN_TEXT_SENTENCES_COUNT = 1;
+  const MAX_TEXT_SENTENCES_COUNT = textSentences.length - 1;
 
-  return textSentences.slice(0, sentencesCount).join(` `);
+  return getRandomTextSentences(textSentences, MIN_TEXT_SENTENCES_COUNT, MAX_TEXT_SENTENCES_COUNT);
 };
 
 // Returns DateTime segment handled with padStart
