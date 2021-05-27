@@ -22,7 +22,7 @@ const getAnnounce = () => {
 const getText = () => {
   const sentencesCount = getRandomInt(1, textSentences.length - 1);
 
-  return textSentences.slice(0, sentencesCount);
+  return textSentences.slice(0, sentencesCount).join(` `);
 };
 
 // Returns DateTime segment handled with padStart
