@@ -1,7 +1,6 @@
 'use strict';
 
 const {Commands} = require(`../commands`);
-const {Config} = require(`../assets/config`);
 const {CommandsRegister} = require(`./commands-register`);
 const {parseRuntimeParameters} = require(`../assets/utils`);
 
@@ -17,16 +16,15 @@ class App {
     // Add commands to register first of all
     App.commandsRegister.addEach(Commands);
 
-    // If command specified with wrong prefix or specified command that does not exists
-    if (!App._isCommand(command) || !App.commandsRegister.isCommandExists(command)) {
-      const defaultCommand = App.commandsRegister.getCommandByName(DEFAULT_COMMAND);
-      defaultCommand.execute(App);
-
-      process.exit(Config.Codes.ERROR);
-    }
+    // Does the command is specified with correct prefix
+    const isCommand = App._isCommand(command);
+    // Does the command is even exists
+    const isCommandExists = App.commandsRegister.isCommandExists(command);
+    // Should app to use default command if command specified by user is not correct
+    const targetCommand = (isCommand && isCommandExists) ? command : DEFAULT_COMMAND;
 
     // Get target command and execute it with specified params
-    const invokedCommand = App.commandsRegister.getCommandByName(command);
+    const invokedCommand = App.commandsRegister.getCommandByName(targetCommand);
     invokedCommand.execute(App, args);
   }
 

@@ -1,5 +1,7 @@
 'use strict';
 
+const {Config} = require(`../assets/config`);
+
 // Parent class for commands classes
 class Command {
   constructor() {
@@ -22,6 +24,7 @@ class Command {
 
   execute() {
     console.error(`Command '${this.name}' is not implemented or executor is not defined`);
+    process.exit(Config.Codes.ERROR);
   }
 }
 
