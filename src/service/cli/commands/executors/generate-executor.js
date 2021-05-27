@@ -74,9 +74,13 @@ const getRandomDateTime = () => {
 
 // Returns random publication categories array
 const getCategories = () => {
-  const categoriesCount = getRandomInt(1, categories.length - 1);
+  const MIN_CATEGORIES_COUNT = 1;
+  const MAX_CATEGORIES_COUNT = categories.length - 1;
 
-  return categories.slice(0, categoriesCount);
+  const categoriesCount = getRandomInt(MIN_CATEGORIES_COUNT, MAX_CATEGORIES_COUNT);
+  const shuffledCategories = shuffle(categories);
+
+  return shuffledCategories.slice(0, categoriesCount);
 };
 
 // Writes mocks data to json file
