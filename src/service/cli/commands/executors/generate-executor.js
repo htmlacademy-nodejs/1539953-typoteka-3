@@ -3,7 +3,8 @@
 const {Config} = require(`../../assets/config`);
 const {getRandomInt, shuffle} = require(`../../assets/utils`);
 const {titles, textSentences, categories} = require(`../../assets/contents.json`);
-const fs = require(`fs`);
+const fs = require(`fs`).promises;
+const chalk = require(`chalk`);
 
 // Returns record title
 const getTitle = () => {
@@ -84,20 +85,19 @@ const getCategories = () => {
 };
 
 // Writes mocks data to json file
-const writeContentToFile = (body) => {
-  fs.writeFile(Config.FILE_NAME, body, (error) => {
-    if (error) {
-      console.error(`Can't write data to file...`);
-      return process.exit(Config.Codes.ERROR);
-    }
-
-    console.info(`Operation success. File created.`);
-    return process.exit(Config.Codes.SUCCESS);
-  });
+const writeContentToFile = async (body) => {
+  try {
+    await fs.writeFile(Config.FILE_NAME, body);
+    console.info(chalk.green(`Operation success. File created.`));
+    process.exit(Config.Codes.SUCCESS);
+  } catch (error) {
+    console.error(chalk.red(`Can't write data to file...`));
+    process.exit(Config.Codes.ERROR);
+  }
 };
 
 // Returns generated publications data
-const generateExecutor = (count) => {
+const generateExecutor = async (count) => {
   // Creates specified count of empty objects and fills it with data
   const data = Array(count).fill({}).map(() => {
     return {
@@ -111,7 +111,7 @@ const generateExecutor = (count) => {
 
   // Create JsonResult and write it to result file
   const jsonData = JSON.stringify(data);
-  writeContentToFile(jsonData);
+  await writeContentToFile(jsonData);
 };
 
 module.exports = {generateExecutor};

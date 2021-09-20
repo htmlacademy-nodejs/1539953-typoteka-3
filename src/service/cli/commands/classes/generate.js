@@ -2,6 +2,7 @@
 
 const {Command} = require(`../../core/command`);
 const {Config} = require(`../../assets/config`);
+const chalk = require(`chalk`);
 
 // Main cli app command that generates mocks data
 class GenerateCommand extends Command {
@@ -25,7 +26,7 @@ class GenerateCommand extends Command {
 
     // If user specified more than 1000 publications break execution with error code
     if (publicationsCount > maxCountValue) {
-      console.error(`Не больше ${maxCountValue} публикаций`);
+      console.error(chalk.red(`Не больше ${maxCountValue} публикаций`));
       process.exit(Config.Codes.ERROR);
     }
 
