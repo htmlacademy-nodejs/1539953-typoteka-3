@@ -17,6 +17,12 @@ const Config = {
   MIN_ANNOUNCE_LENGTH: 1,
   // Max count of sentences in announce
   MAX_ANNOUNCE_LENGTH: 5,
+  // Paths to contents from cli app root
+  Paths: {
+    TITLES: `/cli/data/titles.txt`,
+    SENTENCES: `/cli/data/sentences.txt`,
+    CATEGORIES: `/cli/data/categories.txt`
+  },
   // Output file name
   FILE_NAME: `mocks.json`
 };
