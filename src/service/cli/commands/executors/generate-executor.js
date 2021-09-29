@@ -23,10 +23,10 @@ const getAnnounce = (textSentences) => {
 
 // Returns random count of text sentences for publication
 const getText = (textSentences) => {
-  const MIN_TEXT_SENTENCES_COUNT = 1;
-  const MAX_TEXT_SENTENCES_COUNT = textSentences.length - 1;
+  const minTextSentencesCount = 1;
+  const maxTextSentencesCount = textSentences.length - 1;
 
-  return getRandomTextSentences(textSentences, MIN_TEXT_SENTENCES_COUNT, MAX_TEXT_SENTENCES_COUNT);
+  return getRandomTextSentences(textSentences, minTextSentencesCount, maxTextSentencesCount);
 };
 
 // Returns DateTime segment handled with padStart
@@ -72,10 +72,10 @@ const getRandomDateTime = () => {
 
 // Returns random publication categories array
 const getCategories = (categories) => {
-  const MIN_CATEGORIES_COUNT = 1;
-  const MAX_CATEGORIES_COUNT = categories.length - 1;
+  const minCategoriesCount = 1;
+  const maxCategoriesCount = categories.length - 1;
 
-  const categoriesCount = getRandomInt(MIN_CATEGORIES_COUNT, MAX_CATEGORIES_COUNT);
+  const categoriesCount = getRandomInt(minCategoriesCount, maxCategoriesCount);
   const shuffledCategories = shuffle(categories);
 
   return shuffledCategories.slice(0, categoriesCount);
