@@ -6,6 +6,7 @@
   "scripts": {
     "test": "npm run eslint",
     "eslint": "eslint --ext .js src/",
+    "generate": "node ./src/service/service.js --generate 16",
     "start": "node ./src/service/service.js"
   },
   "repository": {
